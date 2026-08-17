@@ -1,9 +1,9 @@
 
+import java.net.InetSocketAddress;
+
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
-
-import java.net.InetSocketAddress;
 
 public class MuralServidor extends WebSocketServer {
 
@@ -43,7 +43,7 @@ public class MuralServidor extends WebSocketServer {
 
     public static void main(String[] args) {
         // Rodando em máquina compartilhada com colegas? Some seu OFFSET (seção 3.3): 8887 + OFFSET
-        MuralServidor servidor = new MuralServidor(8887);
+        MuralServidor servidor = new MuralServidor(8980);
         servidor.start();
     }
 }

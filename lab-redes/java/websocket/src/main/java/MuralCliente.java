@@ -21,7 +21,7 @@ public class MuralCliente {
         };
 
         WebSocket socket = client.newWebSocketBuilder()
-                .buildAsync(URI.create("ws://localhost:8887"), listener)
+                .buildAsync(URI.create("ws://localhost:8980"), listener)
                 .join();
 
         Scanner teclado = new Scanner(System.in);
