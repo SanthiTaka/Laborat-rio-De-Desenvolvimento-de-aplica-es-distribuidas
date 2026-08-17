@@ -23,12 +23,12 @@ Ao final deste laboratório, o aluno deve ser capaz de:
 
 Para dar continuidade entre as quatro partes, todos os exercícios giram em torno do mesmo cenário: uma pequena **central de comunicação da turma**, implementada de quatro formas diferentes:
 
-| Parte | Protocolo | O que representa no cenário |
-|---|---|---|
-| A | TCP | Um aluno pergunta algo ao monitor e recebe uma resposta direta (conversa privada, confiável) |
-| B | UDP | O mesmo pedido de horário, mas sem garantia de entrega (mensagem "solta") |
-| C | Multicast | O professor avisa **todos os alunos conectados** de uma vez (grupo) |
-| D | WebSocket | Um mural de avisos em tempo real, ao qual vários alunos ficam conectados simultaneamente |
+| Parte | Protocolo | O que representa no cenário                                                                  |
+| ----- | --------- | -------------------------------------------------------------------------------------------- |
+| A     | TCP       | Um aluno pergunta algo ao monitor e recebe uma resposta direta (conversa privada, confiável) |
+| B     | UDP       | O mesmo pedido de horário, mas sem garantia de entrega (mensagem "solta")                    |
+| C     | Multicast | O professor avisa **todos os alunos conectados** de uma vez (grupo)                          |
+| D     | WebSocket | Um mural de avisos em tempo real, ao qual vários alunos ficam conectados simultaneamente     |
 
 Essa progressão ajuda a perceber, na prática, por que cada protocolo existe.
 
@@ -36,14 +36,14 @@ Essa progressão ajuda a perceber, na prática, por que cada protocolo existe.
 
 Este roteiro foi desenhado para uma aula de laboratório (cerca de 100 minutos), mas é denso — 8 programas, 12 perguntas e 8 evidências. Use a tabela abaixo como guia de ritmo; se o tempo apertar, siga a coluna "se faltar tempo":
 
-| Parte | Tempo sugerido em aula | Se faltar tempo |
-|---|---|---|
-| Preparação do ambiente (seção 3) | 10 min | Deixe feito antes da aula, se possível |
-| A — TCP | 20 min | Prioridade máxima — não pule |
-| B — UDP | 15 min | Prioridade máxima — não pule |
-| C — Multicast | 20 min | Pode finalizar como tarefa de casa se a rede do laboratório atrapalhar (veja seção 6.5) |
-| D — WebSocket | 25 min | É a parte mais avançada (exige Maven); pode ser concluída como tarefa de casa |
-| Respostas em `RESPOSTAS.md` | ao longo de toda a aula | Responda cada parte logo após implementá-la, não deixe as 12 perguntas para o final |
+| Parte                            | Tempo sugerido em aula  | Se faltar tempo                                                                         |
+| -------------------------------- | ----------------------- | --------------------------------------------------------------------------------------- |
+| Preparação do ambiente (seção 3) | 10 min                  | Deixe feito antes da aula, se possível                                                  |
+| A — TCP                          | 20 min                  | Prioridade máxima — não pule                                                            |
+| B — UDP                          | 15 min                  | Prioridade máxima — não pule                                                            |
+| C — Multicast                    | 20 min                  | Pode finalizar como tarefa de casa se a rede do laboratório atrapalhar (veja seção 6.5) |
+| D — WebSocket                    | 25 min                  | É a parte mais avançada (exige Maven); pode ser concluída como tarefa de casa           |
+| Respostas em `RESPOSTAS.md`      | ao longo de toda a aula | Responda cada parte logo após implementá-la, não deixe as 12 perguntas para o final     |
 
 **Se precisar priorizar, a ordem de importância é TCP → UDP → Multicast → WebSocket** — as duas primeiras partes cobrem os conceitos centrais de nivelamento (conexão vs. sem conexão) e devem ser concluídas em aula por todos.
 
@@ -129,13 +129,13 @@ OFFSET = os dois últimos dígitos da sua matrícula/RA (ex.: matrícula 1234567
 
 Use esse `OFFSET` somado à porta-base de **cada parte**, em todos os arquivos (Java e Python), substituindo o valor fixo sugerido no roteiro:
 
-| Parte | Porta-base | Sua porta |
-|---|---|---|
-| A — TCP | 5000 | `5000 + OFFSET` |
-| B — UDP | 5001 | `5001 + OFFSET` |
-| C — Multicast | 4446 | `4446 + OFFSET` |
-| D — WebSocket (Java) | 8887 | `8887 + OFFSET` |
-| D — WebSocket (Python) | 8888 | `8888 + OFFSET` |
+| Parte                  | Porta-base | Sua porta       |
+| ---------------------- | ---------- | --------------- |
+| A — TCP                | 5000       | `5000 + OFFSET` |
+| B — UDP                | 5001       | `5001 + OFFSET` |
+| C — Multicast          | 4446       | `4446 + OFFSET` |
+| D — WebSocket (Java)   | 8887       | `8887 + OFFSET` |
+| D — WebSocket (Python) | 8888       | `8888 + OFFSET` |
 
 Isso é **obrigatório na Parte C** (Multicast) e recomendado nas demais caso você esteja num laboratório com máquinas compartilhadas. O grupo multicast (`230.0.0.1`) pode continuar o mesmo — o que isola seu tráfego dos colegas é a porta.
 
@@ -667,7 +667,7 @@ git commit -m "feat(multicast): implementa servidor e cliente multicast em Java 
 
 ## 7. Parte D — WebSocket (comunicação full-duplex em tempo real)
 
-**Conceito:** o WebSocket começa com um *handshake* HTTP (uma requisição `Upgrade`) e, a partir daí, mantém uma conexão TCP aberta para troca de mensagens **bidirecionais** em tempo real, sem o overhead de reabrir uma conexão a cada mensagem — diferente do modelo tradicional de requisição/resposta do HTTP.
+**Conceito:** o WebSocket começa com um _handshake_ HTTP (uma requisição `Upgrade`) e, a partir daí, mantém uma conexão TCP aberta para troca de mensagens **bidirecionais** em tempo real, sem o overhead de reabrir uma conexão a cada mensagem — diferente do modelo tradicional de requisição/resposta do HTTP.
 
 **Cenário:** o "mural de avisos" da turma — vários alunos conectados simultaneamente recebem mensagens instantaneamente, e qualquer aluno pode publicar um aviso que todos veem na hora.
 
@@ -926,20 +926,20 @@ git commit -m "feat(websocket): implementa mural em tempo real com WebSocket em 
 
 ## 9. Critérios de avaliação
 
-| Critério | O que é observado |
-|---|---|
-| **Commits** | Existência, granularidade e clareza das mensagens de commit ao longo de todo o desenvolvimento (não apenas no commit final) |
-| **Funcionamento do código** | As 8 soluções (4 protocolos × 2 linguagens) compilam/executam e realizam a comunicação esperada |
-| **Evidências de teste** | Presença, na pasta `evidencias/`, dos 8 prints de tela exigidos, mostrando execução real (não apenas código) de cada protocolo nas duas linguagens |
-| **Respostas às questões** | Compreensão demonstrada nas respostas de `RESPOSTAS.md`, com referência ao comportamento observado no código, não apenas definições copiadas de fontes externas |
+| Critério                    | O que é observado                                                                                                                                               |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Commits**                 | Existência, granularidade e clareza das mensagens de commit ao longo de todo o desenvolvimento (não apenas no commit final)                                     |
+| **Funcionamento do código** | As 8 soluções (4 protocolos × 2 linguagens) compilam/executam e realizam a comunicação esperada                                                                 |
+| **Evidências de teste**     | Presença, na pasta `evidencias/`, dos 8 prints de tela exigidos, mostrando execução real (não apenas código) de cada protocolo nas duas linguagens              |
+| **Respostas às questões**   | Compreensão demonstrada nas respostas de `RESPOSTAS.md`, com referência ao comportamento observado no código, não apenas definições copiadas de fontes externas |
 
 A ponderação exata entre esses critérios é definida pelo professor responsável pela turma (T1 ou T2), conforme os critérios de avaliação apresentados em sala.
 
 ## 10. Referências
 
-- OLIVEIRA VALENTE, Marco Túlio. *Redes de Computadores*. Notas de aula, DCC/UFMG.
-- Oracle. *Java Networking Documentation* — pacote `java.net`. Disponível em: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/package-summary.html
-- Python Software Foundation. *socket — Low-level networking interface*. Disponível em: https://docs.python.org/3/library/socket.html
+- OLIVEIRA VALENTE, Marco Túlio. _Redes de Computadores_. Notas de aula, DCC/UFMG.
+- Oracle. _Java Networking Documentation_ — pacote `java.net`. Disponível em: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/package-summary.html
+- Python Software Foundation. _socket — Low-level networking interface_. Disponível em: https://docs.python.org/3/library/socket.html
 - Python `websockets` project. Disponível em: https://websockets.readthedocs.io/
 - Java-WebSocket project (TooTallNate). Disponível em: https://github.com/TooTallNate/Java-WebSocket
-- MDN Web Docs. *The WebSocket API*. Disponível em: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+- MDN Web Docs. _The WebSocket API_. Disponível em: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API

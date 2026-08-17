@@ -20,3 +20,11 @@
 2. O TTL define até onde o pacote multicast pode chegar na rede, controlando a quantidade de roteadores que ele pode atravessar. Ele evita que mensagens sejam enviadas para redes muito distantes sem necessidade.
 
 3. Não. O cliente não recebe as mensagens antigas porque o multicast não armazena os avisos enviados. Ele só recebe as mensagens que forem enviadas enquanto estiver conectado ao grupo.
+
+-------------- PARTE D ----------------
+
+1. Depois do handshake, a conexão deixa de ser uma comunicação HTTP normal e passa a usar o protocolo WebSocket. A conexão TCP continua aberta, permitindo troca de mensagens nos dois sentidos em tempo real.
+
+2. No WebSocket, o servidor mantém uma lista dos clientes conectados e envia a mensagem para cada um deles. No Multicast, o servidor envia para um grupo de rede, e os clientes que estiverem inscritos nesse grupo recebem a mensagem.
+
+3. Porque o WebSocket já possui uma estrutura pronta para comunicação em tempo real, com mensagens e vários clientes conectados. No TCP puro seria necessário criar manualmente o controle das conexões e o envio das mensagens para cada client
