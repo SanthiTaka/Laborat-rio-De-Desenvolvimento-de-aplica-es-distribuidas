@@ -3,3 +3,12 @@
 2. O TCP usa números de sequência e confirmações de recebimento (ACK) para organizar as mensagens e garantir que elas cheguem na ordem correta.
 
 3. Não suporta. O servidor aceita apenas um cliente por vez, pois depois do accept() ele fica preso atendendo somente essa conexão. Para aceitar vários clientes seria necessário criar uma thread para cada cliente.
+
+-------------- PARTE B ----------------
+
+1. Com o servidor desligado, a mensagem foi enviada pelo cliente, mas não apareceu nenhuma resposta. Isso acontece porque o UDP não verifica se existe um servidor conectado antes de enviar os dados. No TCP seria diferente, pois o cliente não conseguiria conectar e apresentaria erro, já que o TCP precisa estabelecer uma conexão antes da comunicação.
+
+2. Um exemplo é jogos online, pois precisam de respostas rápidas e é melhor perder alguns pacotes do que atrasar a comunicação.
+   Outro exemplo é streaming de vídeo e chamadas de vídeo, pois a velocidade é mais importante que garantir todos os pacotes. Um pequeno atraso é pior do que perder alguns dados.
+
+3. Sim, seria possível. O servidor teria que guardar informações dos clientes. A aplicação ficaria mais parecida com um sistema de controle de conexões, mesmo o UDP não tendo conexão de verdade.
