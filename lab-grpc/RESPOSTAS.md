@@ -49,3 +49,11 @@ Não. Esconder completamente que uma operação é remota pode dificultar o trat
 3. Comparação entre TCP e gRPC
 
 A resposta desta questão será complementada após a implementação das Partes C e D. No cliente TCP, é necessário lidar diretamente com aspectos da rede, como socket, envio e recebimento de dados e interpretação das mensagens. No gRPC, o programador pode chamar um método do serviço e receber o resultado, enquanto o framework cuida de grande parte da comunicação. Isso está relacionado principalmente à transparência de acesso.
+
+Parte B — Perguntas
+
+1. O central.proto deixa definido de forma clara quais operações existem e quais dados são enviados e recebidos. Além disso, o código é gerado automaticamente, reduzindo erros e evitando que cliente e servidor precisem combinar manualmente o formato das mensagens.
+
+2. Isso mostra que diferentes partes de um sistema distribuído podem ser desenvolvidas em linguagens diferentes e ainda assim se comunicar, desde que sigam o mesmo contrato definido no .proto. Assim, um servidor Java pode atender um cliente Python, por exemplo.
+
+3. No Java, as operações aparecem na classe gerada CentralAtendimentoGrpc, que contém métodos relacionados ao serviço, como consultarHorario e acompanharAvisos. Em Python, elas também aparecem no código gerado em central_pb2_grpc.py, principalmente na classe CentralAtendimentoStub.
