@@ -1,7 +1,5 @@
 -- A utilizacao de IA foi para organziar e formular respostas mais claras e eficientes das que eu respondi! ( uso do chat gpt para analisar, completar e corrigir minhas respotas)
 
-
-
 -------------- PARTE A -------------------
 
 -TCP----
@@ -36,7 +34,7 @@
 
 3. Se o servidor mudasse de máquina, o cliente não conseguiria se conectar ao novo servidor sem alterar a URI ws://localhost:8980 no código-fonte. Portanto, também não sobreviveria à mudança sem alteração.
 
-Perguntas — Parte A
+Pasrte A - Resposrtas
 
 1. Dentre os 8 tipos de transparência listados, qual você diria que é a mais visível para o programador que está usando um serviço remoto?
 
@@ -50,10 +48,18 @@ Não. Esconder completamente que uma operação é remota pode dificultar o trat
 
 A resposta desta questão será complementada após a implementação das Partes C e D. No cliente TCP, é necessário lidar diretamente com aspectos da rede, como socket, envio e recebimento de dados e interpretação das mensagens. No gRPC, o programador pode chamar um método do serviço e receber o resultado, enquanto o framework cuida de grande parte da comunicação. Isso está relacionado principalmente à transparência de acesso.
 
-Parte B — Perguntas
+Parte B — Respostas
 
 1. O central.proto deixa definido de forma clara quais operações existem e quais dados são enviados e recebidos. Além disso, o código é gerado automaticamente, reduzindo erros e evitando que cliente e servidor precisem combinar manualmente o formato das mensagens.
 
 2. Isso mostra que diferentes partes de um sistema distribuído podem ser desenvolvidas em linguagens diferentes e ainda assim se comunicar, desde que sigam o mesmo contrato definido no .proto. Assim, um servidor Java pode atender um cliente Python, por exemplo.
 
 3. No Java, as operações aparecem na classe gerada CentralAtendimentoGrpc, que contém métodos relacionados ao serviço, como consultarHorario e acompanharAvisos. Em Python, elas também aparecem no código gerado em central_pb2_grpc.py, principalmente na classe CentralAtendimentoStub.
+
+Parte B — Respostas
+
+1. Entre a chamada do cliente e o retorno da resposta, o gRPC serializa a mensagem usando Protocol Buffers, envia a requisição pela rede usando HTTP/2 e, no servidor, desserializa a mensagem para executar o método. Depois, a resposta é serializada novamente, enviada ao cliente e desserializada automaticamente.
+
+2. No ClienteTCP, o cliente precisava montar a mensagem manualmente e receber e interpretar a resposta usando strings. No gRPC, esse trabalho é feito automaticamente pelo framework e pelo código gerado a partir do arquivo .proto. Assim, o programador trabalha principalmente com objetos e métodos, sem precisar manipular diretamente sockets ou fazer parsing das mensagens.
+
+3. Se o servidor estiver desligado, o cliente não consegue realizar a chamada RPC. No teste realizado em Python, o gRPC retornou o status `UNAVAILABLE` e a mensagem `Connection refused`, indicando que não havia nenhum servidor aceitando conexões na porta utilizada.

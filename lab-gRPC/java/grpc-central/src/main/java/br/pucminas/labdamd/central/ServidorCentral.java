@@ -1,17 +1,17 @@
 package br.pucminas.labdamd.central;
 
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
-import io.grpc.stub.StreamObserver;
-
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
+import io.grpc.stub.StreamObserver;
+
 public class ServidorCentral {
 
     // TODO: substitua pelo seu OFFSET pessoal (ver seção 3.3)
-    static final int OFFSET = 0;
+    static final int OFFSET = 93;
 
     public static void main(String[] args) throws IOException, InterruptedException {
         int porta = 50051 + OFFSET;
