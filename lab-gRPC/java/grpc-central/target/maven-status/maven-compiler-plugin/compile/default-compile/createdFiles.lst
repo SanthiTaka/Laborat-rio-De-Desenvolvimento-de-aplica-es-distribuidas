@@ -1,9 +1,11 @@
 br\pucminas\labdamd\central\PerguntaHorario$1.class
 br\pucminas\labdamd\central\CentralAtendimentoGrpc$AsyncService.class
+br\pucminas\labdamd\central\ServidorCentral$CentralAtendimentoImpl.class
 br\pucminas\labdamd\central\CentralAtendimentoGrpc$2.class
 br\pucminas\labdamd\central\Aviso$Builder.class
 br\pucminas\labdamd\central\CentralAtendimentoGrpc$CentralAtendimentoFutureStub.class
 br\pucminas\labdamd\central\CentralAtendimentoGrpc$CentralAtendimentoImplBase.class
+br\pucminas\labdamd\central\ServidorCentral.class
 br\pucminas\labdamd\central\InscricaoAvisos$1.class
 br\pucminas\labdamd\central\Aviso$1.class
 br\pucminas\labdamd\central\RespostaHorarioOrBuilder.class
