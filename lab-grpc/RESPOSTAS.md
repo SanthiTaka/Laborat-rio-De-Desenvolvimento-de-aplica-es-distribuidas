@@ -56,10 +56,19 @@ Parte B — Respostas
 
 3. No Java, as operações aparecem na classe gerada CentralAtendimentoGrpc, que contém métodos relacionados ao serviço, como consultarHorario e acompanharAvisos. Em Python, elas também aparecem no código gerado em central_pb2_grpc.py, principalmente na classe CentralAtendimentoStub.
 
-Parte B — Respostas
+Parte C — Respostas
 
 1. Entre a chamada do cliente e o retorno da resposta, o gRPC serializa a mensagem usando Protocol Buffers, envia a requisição pela rede usando HTTP/2 e, no servidor, desserializa a mensagem para executar o método. Depois, a resposta é serializada novamente, enviada ao cliente e desserializada automaticamente.
 
 2. No ClienteTCP, o cliente precisava montar a mensagem manualmente e receber e interpretar a resposta usando strings. No gRPC, esse trabalho é feito automaticamente pelo framework e pelo código gerado a partir do arquivo .proto. Assim, o programador trabalha principalmente com objetos e métodos, sem precisar manipular diretamente sockets ou fazer parsing das mensagens.
 
 3. Se o servidor estiver desligado, o cliente não consegue realizar a chamada RPC. No teste realizado em Python, o gRPC retornou o status `UNAVAILABLE` e a mensagem `Connection refused`, indicando que não havia nenhum servidor aceitando conexões na porta utilizada.
+
+
+Parte D- Respostas
+
+1. O streaming gRPC é uma comunicação unicast, ou seja, cada conexão é entre um servidor e um cliente. Para vários clientes receberem os mesmos avisos, o servidor precisaria manter uma lista das conexões/clientes inscritos e enviar cada aviso para todos os StreamObserver ativos. Isso seria diferente do Multicast, que permite um único envio para vários clientes do grupo.
+
+2. As duas abordagens produzem o mesmo resultado. Achei a abordagem do Python com yield mais natural, pois fica mais simples de entender que o servidor vai produzindo e enviando vários valores ao longo do tempo. No Java, o uso de StreamObserver exige entender chamadas como onNext() e onCompleted().
+
+3. Se o cliente fechar a conexão durante o streaming, o servidor pode detectar que a chamada foi cancelada por meio do context. Os próximos envios podem falhar ou ser interrompidos, e o servidor não deve continuar tentando enviar avisos para uma conexão que já foi encerrada. No teste, o comportamento pode variar conforme o momento em que a conexão é fechada.
